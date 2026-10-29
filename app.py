@@ -7,7 +7,7 @@ import pandas as pd
 # Pengaturan Halaman (harus paling awal)
 # ======================
 st.set_page_config(
-    page_title="HyperSVM-RBF",
+    page_title="HyperSVM-Predict",
     page_icon="🩺",
     layout="centered"
 )
@@ -26,8 +26,8 @@ model, scaler = load_model()
 # ======================
 # Header
 # ======================
-st.title("🩺 HyperSVM-RBF")
-st.markdown("**Sistem Prediksi Hipertensi berbasis SVM kernel RBF**")
+st.title("🩺 HyperSVM-Predict")
+st.markdown("**Sistem Prediksi Hipertensi berbasis SVM-RBF**")
 st.warning(
     "Hasil ini hanyalah perkiraan dari model machine learning dan **bukan diagnosis medis**. "
     "Untuk pemeriksaan yang akurat, konsultasikan dengan dokter.",
