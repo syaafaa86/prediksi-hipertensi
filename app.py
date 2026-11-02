@@ -155,7 +155,7 @@ if submitted:
         st.dataframe(ringkasan, use_container_width=True, hide_index=True)
         
 with st.sidebar:
-    st.image("hypersvm_predict_logo.png",use_container_width=True)
+    st.image("HyperSVM-Predict Heart Health Logo.png",use_container_width=True)
     st.divider()
     st.header("ℹ️ Informasi")
     st.write("Aplikasi ini menggunakan model **Support Vector Machine (SVM) kernel RBF**.")
