@@ -3,18 +3,12 @@ import joblib
 import numpy as np
 import pandas as pd
 
-# ======================
-# Pengaturan Halaman (harus paling awal)
-# ======================
 st.set_page_config(
     page_title="HyperSVM-Predict",
     page_icon="🩺",
     layout="centered"
 )
 
-# ======================
-# Load Model & Scaler
-# ======================
 @st.cache_resource
 def load_model():
     model = joblib.load('svm_hipertensi.pkl')
@@ -23,9 +17,6 @@ def load_model():
 
 model, scaler = load_model()
 
-# ======================
-# Header
-# ======================
 st.title("🩺 HyperSVM-Predict")
 st.markdown("**Sistem Prediksi Hipertensi berbasis SVM-RBF**")
 st.warning(
@@ -35,9 +26,6 @@ st.warning(
 )
 st.divider()
 
-# ======================
-# Form Input
-# ======================
 st.subheader("📋 Masukkan Data Pasien")
 
 with st.form("form_pasien"):
@@ -95,9 +83,6 @@ with st.form("form_pasien"):
         "🔍 Prediksi Sekarang", type="primary", use_container_width=True
     )
 
-# ======================
-# Encoding
-# ======================
 bp_mapping = {"Normal": 0, "Prehypertension": 1, "Hypertension": 2}
 med_mapping = {
     "ACE Inhibitor": 0,
@@ -108,11 +93,7 @@ med_mapping = {
 }
 exercise_map = {"Low": 0, "Moderate": 1, "High": 2}
 
-# ======================
-# Prediksi
-# ======================
 if submitted:
-    # Urutan harus sama dengan saat training
     data = np.array([[
         age,
         salt_intake,
@@ -128,8 +109,7 @@ if submitted:
 
     data_scaled = scaler.transform(data)
     prediksi = model.predict(data_scaled)[0]
-
-    # predict_proba hanya ada jika model dilatih dengan probability=True
+    
     try:
         proba = model.predict_proba(data_scaled)[0]
     except (AttributeError, NotImplementedError):
@@ -173,11 +153,10 @@ if submitted:
             ]
         }).astype({"Nilai": str})
         st.dataframe(ringkasan, use_container_width=True, hide_index=True)
-
-# ======================
-# Sidebar
-# ======================
+        
 with st.sidebar:
+    st.image("hypersvm_predict_logo.png",use_container_width=True)
+    st.divider()
     st.header("ℹ️ Informasi")
     st.write("Aplikasi ini menggunakan model **Support Vector Machine (SVM) kernel RBF**.")
     st.write("**Keterangan:**")
