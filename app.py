@@ -138,7 +138,6 @@ if submitted:
         c2.metric("Berisiko", f"{proba[1]*100:.1f}%")
         st.progress(float(proba[1]), text=f"Probabilitas hipertensi: {proba[1]*100:.1f}%")
 
-    # Ringkasan input dengan label asli (bukan angka hasil encoding)
     with st.expander("Lihat data yang diprediksi"):
         ringkasan = pd.DataFrame({
             "Fitur": [
